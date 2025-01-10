@@ -28,19 +28,23 @@ function Login() {
       password: password,
     };
     axios
-      .post(`https://auth-rg69.onrender.com/api/auth/signup`, user, {
+      .post(`https://auth-rg69.onrender.com/api/auth/signin`, user, {
         headers: {
           "Content-Type": "application/json",
         },
       })
       .then((response) => {
         console.log(response);
-        alert(response.data.message);
-        navigate("/login");
+        localStorage.setItem('user', JSON.stringify(response.data))
+        localStorage.setItem("token", response.data.accessToken);
+        navigate("/");
       })
       .catch((err) => {
         console.log(err);
-        if (err.response.status == 400) {
+        if (err.response.status == 404) {
+          alert(err.response?.data?.message);
+        }
+        if (err.response.status == 401) {
           alert(err.response?.data?.message);
         }
       });
