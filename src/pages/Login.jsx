@@ -5,24 +5,14 @@ import { useNavigate } from "react-router-dom";
 function Login() {
   let navigate = useNavigate();
   let [name, setName] = useState("");
-  let [email, setEmail] = useState("");
   let [password, setPassword] = useState("");
-  let [confirm, setConfirm] = useState("");
   function valid() {
     if (name.length < 2) {
       alert("bunday ism bolishi munkun emas");
       return;
     }
-    if (email.length < 3) {
-      alert("bunday email bolishi munkun emas");
-      return;
-    }
     if (password.length < 3) {
       alert("parol kamida 3ta belgidan iborat bolishi shart");
-      return;
-    }
-    if (password != confirm) {
-      alert("parolni togri kiriting");
       return;
     }
     return true;
@@ -35,7 +25,6 @@ function Login() {
     }
     let user = {
       username: name,
-      email: email,
       password: password,
     };
     axios
@@ -69,27 +58,11 @@ function Login() {
           }}
         />
         <input
-          type="email"
-          value={email}
-          placeholder="emailingizni kiriting"
-          onChange={(e) => {
-            setEmail(e.target.value);
-          }}
-        />
-        <input
           type="password"
           value={password}
           placeholder="parolni kiriting"
           onChange={(e) => {
             setPassword(e.target.value);
-          }}
-        />
-        <input
-          type="password"
-          value={confirm}
-          placeholder="parolni takrorlang"
-          onChange={(e) => {
-            setConfirm(e.target.value);
           }}
         />
         <button>Login</button>
