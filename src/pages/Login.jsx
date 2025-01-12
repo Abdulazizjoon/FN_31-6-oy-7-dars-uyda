@@ -49,6 +49,9 @@ function Login() {
         }
       });
   }
+  function registerpage(e) {
+    navigate('/register')
+  }
 
   return (
     <div className="register-container">
@@ -69,6 +72,9 @@ function Login() {
             setPassword(e.target.value);
           }}
         />
+        <div>
+          <p onClick={registerpage} className="register">register page</p>
+        </div>
         <button>Login</button>
       </form>
     </div>

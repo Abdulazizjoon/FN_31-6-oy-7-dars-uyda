@@ -60,6 +60,9 @@ function Register() {
         setLoading(false);
       });
   }
+  function registerpage(e) {
+    navigate('/login')
+  }
 
   return (
     <div className="register-container">
@@ -96,7 +99,14 @@ function Register() {
             setConfirm(e.target.value);
           }}
         />
-        <button disabled={loading}>{loading ? "Loading..." : "Register"}</button>
+        <div>
+          <p onClick={registerpage} className="register">
+            login page
+          </p>
+        </div>
+        <button disabled={loading}>
+          {loading ? "Loading..." : "Register"}
+        </button>
       </form>
     </div>
   );
